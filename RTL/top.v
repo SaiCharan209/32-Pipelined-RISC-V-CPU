@@ -107,11 +107,11 @@
                 IFID_Ins <= NOP;
                 IFID_PC  <= 32'd0;
             end
-            else if (IF_ID_NOP) begin       // branch flush — kill
+            else if (IF_ID_NOP) begin      
                 IFID_Ins <= NOP;
                 IFID_PC  <= IFID_PC;
             end
-            else if (stall) begin           // load-use stall — hold
+            else if (stall) begin          
                 IFID_Ins <= IFID_Ins;
                 IFID_PC  <= IFID_PC;
             end
@@ -163,7 +163,7 @@
                 IDEX_rs1         <= 5'd0;
                 IDEX_rs2         <= 5'd0;
             end
-            else if (ID_EX_NOP || stall) begin  // bubble — zero all control signals
+            else if (ID_EX_NOP || stall) begin  
                 IDEX_PC          <= IDEX_PC;
                 IDEX_read_data_1 <= 32'd0;
                 IDEX_read_data_2 <= 32'd0;
@@ -177,7 +177,7 @@
                 IDEX_funct3      <= 3'd0;
                 IDEX_Jump        <= 2'b00;
                 IDEX_rd          <= 5'd0;
-                IDEX_rs1         <= 5'd0;   // x0 never forwards
+                IDEX_rs1         <= 5'd0;   
                 IDEX_rs2         <= 5'd0;
             end
             else begin
@@ -299,7 +299,7 @@
             .IFID_rs2       (IFID_Ins[24:20]),
             .IFID_ALUSrc_B  (ID_ALUSrc_B),
             .IFID_ALUSrc_A  (ID_ALUSrc_A),
-            .IFID_mem_write (ID_mem_write), // [NEW] Connect the ID mem_write signal
+            .IFID_mem_write (ID_mem_write),
             .stall          (stall)
         );
 
